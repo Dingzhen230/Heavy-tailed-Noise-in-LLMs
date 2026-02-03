@@ -1,0 +1,11 @@
+tiktoken
+torch
+torchaudio
+torchvision
+tqdm
+transformers
+pandas==1.3.5
+datasets==2.15.0
+zstandard
+numpy
+# wandb
