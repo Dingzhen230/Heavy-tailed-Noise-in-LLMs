@@ -190,4 +190,5 @@ export WANDB_API_KEY="put your authorize key here, to find it: https://wandb.ai/
 ## Acknowledgements
 
 This project is heavily based on [llm-optimizer-benchmark](https://github.com/epfml/llm-optimizer-benchmark)
+The tail-index estimator `alpha_estimator` is borrowed from [sgd_tail_index](https://github.com/umutsimsekli/sgd_tail_index)
 We gratefully acknowledge their work and contributions to the open-source community.
