@@ -186,4 +186,8 @@ The project relies on wandb to save the outcome and record the results. You need
 pip install -r requirements.txt # install req.
 export WANDB_API_KEY="put your authorize key here, to find it: https://wandb.ai/authorize"
 ```
-## 
+
+## Acknowledgements
+
+This project is heavily based on [llm-optimizer-benchmark](https://github.com/epfml/llm-optimizer-benchmark)
+We gratefully acknowledge their work and contributions to the open-source community.
