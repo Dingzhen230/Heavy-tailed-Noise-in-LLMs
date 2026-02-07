@@ -1,4 +1,4 @@
-# Heavy-tailed-noise-expriment
+# Heavy-tailed-Noise-in-LLMs
 This is the experiment code for `Sign-based Optimizers Are Effective Under Heavy-tailed Noise`
 
 ## Quickstart 
