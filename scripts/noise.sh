@@ -35,7 +35,7 @@ COMMON=(
   --save_cnt 5
   --sample_itr 100
   --mode noise
-  --layer_type "embedding"
+  --layer_type "attention"
 )
 
 ## adamw

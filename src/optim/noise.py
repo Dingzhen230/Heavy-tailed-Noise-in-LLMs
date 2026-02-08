@@ -59,7 +59,7 @@ def eval_noise(model, opt, datareaders, scheduler, cfg, exp_dir, distributed_bac
                                        sample_per_rank = 1250)
 
         local_alpha_at_ckpt : torch.Tensor = alpha_estimator(noise_at_ckpt)
-        print(f"local alpha of rank {dist.get_rank()} at iteration {step} : {local_alpha_at_ckpt}")
+        # print(f"local alpha of rank {dist.get_rank()} at iteration {step} : {local_alpha_at_ckpt}")
         avg_alpha_at_ckpt : float = gather_alpha(local_alpha_at_ckpt, distributed_backend, device)
 
         step_name = f"{step}"
@@ -83,11 +83,7 @@ def eval_noise(model, opt, datareaders, scheduler, cfg, exp_dir, distributed_bac
 
             if avg_coordinate_alpha_at_ckpt < 1.1:
                 coordinate_norms[sample_idx] = torch.abs(coordinate_noise_at_ckpt) ** avg_coordinate_alpha_at_ckpt
-                if is_master:
-                    print(f"{sample_idx} is a heavy-tailed index, with p = {avg_coordinate_alpha_at_ckpt}")
-
-            if is_master:
-                print(f"coordinate_alpha at coord {sample_idx}: {avg_coordinate_alpha_at_ckpt}")
+                
 
 
         m, n = ori_shape
@@ -173,24 +169,21 @@ def eval_noise(model, opt, datareaders, scheduler, cfg, exp_dir, distributed_bac
         # logging process
         if is_master:
             all_noise_norm = torch.cat(gather_list, dim=0)
-            print("global noise acquired : {}".format(all_noise_norm.shape))
-            print(f"global alpha at itr {step} : {avg_alpha_at_ckpt}")
-            log_dict[f"{step_name}/distribution of noise globally"] = wandb.Table(
+            log_dict[f"opt={cfg.opt}_norm_global_itr={step}"] = wandb.Table(
                 data = all_noise_norm.unsqueeze(-1).tolist(),
                 columns = ["norm_val"]
             )
 
-            if n != 1:
-                v_noise_map = wandb.Table(
-                    data=v_noise_data,
-                    columns=["nabla_norm", "noise_norm", "itr"]
-                )
+            v_noise_map = wandb.Table(
+                data=v_noise_data,
+                columns=["nabla_norm", "noise_norm", "itr"]
+            )
 
-                log_dict[f"opt={cfg.opt}_type=v_itr={step}"] = v_noise_map
+            log_dict[f"opt={cfg.opt}_type=v_itr={step}"] = v_noise_map
 
             for index in coordinate_norms.keys():
                 coord_norm = coordinate_norms[index]
-                log_dict[f"{step_name}/table of norm values at {index}"] = wandb.Table(
+                log_dict[f"opt={cfg.opt}_norm_idx={index}_itr={step}"] = wandb.Table(
                     data = coord_norm.unsqueeze(-1).tolist(),
                     columns= ["norm_val"]
                 )
