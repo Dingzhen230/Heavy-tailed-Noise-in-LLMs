@@ -52,7 +52,7 @@ Download all the csv files of your wandb runs, then use the `process_all` functi
 
 We've conducted expriment on the parameters at the `c_attn` of nanoGPT, and validated our noise model proposed in the article that there exists a linear relationship between $\lVert \nabla f(x_i) \rVert^p$ and $\lVert g_i - \nabla f(x_i) \rVert^p$:
 
-![result](plot/4c_itr_0.pdf)
+![result](plot/4c_itr_0.png)
 
 ## Parameters
 
