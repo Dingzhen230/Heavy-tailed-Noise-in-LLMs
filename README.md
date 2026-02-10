@@ -79,10 +79,15 @@ export WANDB_API_KEY="put your authorize key here, to find it: https://wandb.ai/
 ```
 
 ## Reference
-If you find our work help, please cite 
+If you find our work helpful, feel free to cite
 
-```
-bibtex
+```bibtex
+@article{yu2026signheavytails,
+  title={Sign-Based Optimizers Are Effective Under Heavy-Tailed Noise},
+  author={Yu, Dingzhi and Tao, Hongyi and Wan, Yuanyu and Luo, Luo and Zhang, Lijun},
+  journal={arXiv preprint arXiv:2602.07425},
+  year={2026}
+}
 ```
 
 ## Acknowledgements
